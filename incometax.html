@@ -1,0 +1,126 @@
+<html>
+<head>
+    <meta name="viewport" content="width"=device-width, initial-scale="1.0">
+    <title>Income-Tax</title>
+    <link rel="stylesheet" href="incometax-style.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:ital, wght@0, 100;0, 200; 0,300; 0,400; 0,500; 0,
+    700; 1,300&display=swap"  rel="stylesheet">
+
+</head>
+<body>
+    <div class ="container">
+        <a href="lover.html"></a>
+    <div class="navbar">
+        <img src= "assets/Autumn (1).png"; class="logo">
+        <nav>
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="">CONVERSION</a></li>
+                <li><a href="">LOOPING</a></li>
+                <li><a href="">PAYROLL</a></li>
+                </ul>
+        </nav>
+    </div>
+    <body>
+
+    <h1>Income Tax</h1>
+    <main class="table">
+        <section class="table__header">
+            <h2>Income Tax Calculator</h2>
+        </section>
+        <section class="table__body">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <label for="income">Annual income: </label>
+                        </td>
+                        <td>
+                            <input type="number" id="income" placeholder="Enter Annual Income">
+                        </td>
+                        <td>
+                            <button type="button" id="incomelevel">Calculate tax</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">
+                            <div class="output">
+                                <p>Taxable Income: <span id="beforetax"></span></p>
+                                <p>Tax: <span id="tax"></span></p>
+                                <p>Income after tax: <span id="aftertax"></span></p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+
+<script>
+function i400kbelow(x) {
+    var tax = (x-250000) * 0.20
+    var profit = x - tax;
+    document.getElementById("tax").innerHTML = tax.toFixed(2);    
+    document.getElementById("aftertax").innerHTML = profit.toFixed(2); 
+}
+
+function i800kbelow(x) {
+    var tax = (x-400000) * 0.25 + 30000;
+    var profit = x - tax;
+    document.getElementById("tax").innerHTML = tax.toFixed(2);  
+    document.getElementById("aftertax").innerHTML = profit.toFixed(2);  
+}
+
+function i2mbelow(x) {
+    var tax = (x-800000) * 0.30 + 130000
+    var profit = x - tax;
+    document.getElementById("tax").innerHTML = tax.toFixed(2);
+    document.getElementById("aftertax").innerHTML = profit.toFixed(2);    
+}
+
+function i8mbelow(x) {
+    var tax = (x-2000000) * 0.32 + 490000
+    var profit = x - tax;
+    document.getElementById("tax").innerHTML = tax.toFixed(2);  
+    document.getElementById("aftertax").innerHTML = profit.toFixed(2);  
+}
+
+function i8mabove(x) {
+    var tax = (x-8000000) * 0.35 + 2410000
+    var profit = x - tax;
+    document.getElementById("tax").innerHTML = tax.toFixed(2);   
+    document.getElementById("aftertax").innerHTML = profit.toFixed(2); 
+}
+
+document.getElementById("incomelevel").addEventListener("click",
+function incomelevel() {
+    var income = parseFloat(document.getElementById("income").value);
+    document.getElementById("beforetax").innerHTML = income.toFixed(2);
+    if (income >= 0 && income <= 250000) {
+        document.getElementById("tax").innerHTML = "0";
+        document.getElementById("aftertax").innerHTML = income;
+    }
+    else if (income > 250000 && income <= 400000) {
+        i400kbelow(income);
+    }
+    else if (income > 400000 && income <= 800000) {
+        i800kbelow(income);
+    }
+    else if (income > 800000 && income <= 2000000) {
+        i2mbelow(income);
+    }
+    else if (income > 2000000 && income <= 8000000) {
+        i8mbelow(income);
+    }
+    else if (income > 8000000) {
+        i8mabove(income);
+    }
+    else {
+        alert("Please enter a valid annual income");
+    }
+});
+</script>
+</body>
+</html>

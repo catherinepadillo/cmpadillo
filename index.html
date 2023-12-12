@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en"> 
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:ital, wght@0, 100;0, 200; 0,300; 0,400; 0,500; 0,
+      700; 1,300&display=swap"
+      rel="stylesheet"
+      />
+      <link rel="stylesheet" href="style.css"/>
+      <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+      <title>Document</title>
+    </head>
+    <body>  
+      <div class="container">
+        <div class="header">
+          <img src= "assets/whitelogo.png"; class="logo">
+         <ul data-aos="fade-down" data-aos-duration="800">
+
+        
+          <!-- <li>Home</li> -->
+          <!-- <li>News</li>
+          <li>About</li>
+          <li>Contact</li> -->
+         </ul>
+        </div>
+        <div class="banner" style="background-image: url('/assets/img/pic1/IYAH9962.webp')"
+        >
+          <div 
+          class="glass-wrapper"
+          data-aos="fade-right"
+          data-aos-delay="300"
+          data-aos-duration="800"
+          ></div>
+        </div>
+        <div class="hero-title">
+          <p data-aos="fade-left" data-aos-delay="500" data-aos-duration="700">
+           Catherine M.
+          </p>
+          <p 
+          class="era"
+          class="era"
+          data-aos="fade-left"
+          data-aos-delay="600"
+          data-aos-duration="700"
+        >
+          PADILLO
+        </p>
+          <div 
+          class="details"
+          class="details"
+          class="era"
+          data-aos="fade-left"
+          data-aos-delay="700"
+          data-aos-duration="700"
+          >
+          Just as the seasons to a year, Computer Science has various facets and characteristics. This 
+          website contains projects created by Catherine Padillo for the CS 1130: ITC course. Showcasing  
+          key concepts in programming and web design learned throughout the course.
+          </div>
+          <div 
+          class="explore"
+          class="explore"
+          data-aos="fade-left"
+          data-aos-delay="800"
+          data-aos-duration="700"
+          >
+            <!-- <button>Explore</button> -->
+            <a href="incometax.html">
+            <a href="https://urban-goldfish-4j7rj4vx5qww25qrp-5500.app.github.dev/lover.html"></a>
+          </div>
+        </div>
+        <a href="https://urban-goldfish-4j7rj4vx5qww25qrp-5500.app.github.dev/lover.html">
+        <div class="tourist-list">
+          <ul class="place-list">
+            <li class="active"
+            data-aos="fade-down"
+            data-aos-delay="600"
+            data-aos-duration="700"
+            data-img ="./assets/img/pic1/IYAH9962.webp"
+            >
+            
+              <div class="thumbnail" style="background-image: url('./assets/img/pic1/IYAH9962.webp')"
+              >
+              <div class="details">
+                <!-- <p class="province">Era:</p> -->
+                <p class="place-name">Assignments</p>
+                
+              </div>
+            </div>
+            </li>
+            <a href="https://urban-goldfish-4j7rj4vx5qww25qrp-5500.app.github.dev/reputation.html">
+            <ul class="place-list">
+              <li
+              data-aos="fade-down"
+              data-aos-delay="750"
+              data-aos-duration="700"
+              data-img="./assets/"
+              >
+                <!-- <div class="thumbnail" style="background-image: url('./assets/img/pic1/pic2/IYAH0426.jpg')"
+                >
+                <div class="details">
+                  <p class="province">Era:</p>
+                  <p class="place-name">Reputation</p>
+                </div>
+              </div>
+              </li>
+              <a href="https://urban-goldfish-4j7rj4vx5qww25qrp-5500.app.github.dev/1989.html">
+              <ul class="place-list">
+                <li
+                data-img="./assets/img/pic1/pic2/IYAH0122.jpg"
+                data-aos="fade-down"
+                data-aos-delay="850"
+                data-aos-duration="800"
+                >
+                  <div class="thumbnail" style="background-image: url('./assets/img/pic1/pic2/IYAH0122.jpg')"
+                  >
+                  <div class="details">
+                    <p class="province">Era:</p>
+                    <p class="place-name">1989</p> -->
+                  </div>
+                </div>
+                </li>
+          </ul>
+        </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+  <style></style>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+
+    let places = document.querySelectorAll(".place-list li");
+    let active = "/assets/img/pic1/pic2/IYAH0426.jpg";
+
+    places.forEach((e) => {
+      e.addEventListener("mouseenter", (event) => {
+        places.forEach((e) => {
+          e.classList.remove("active");
+        });
+        event.target.classList.add("active");
+        active = event.target.getAttribute('data-img')
+        let banner =document.querySelector(".banner");
+        banner.style.backgroundImage = `url('${active}')`;
+        });
+      });
+  </script>
+  </html>

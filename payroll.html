@@ -1,0 +1,184 @@
+<html>
+<head>
+    <meta name="viewport" content="width"= device-width, initial-scale="1.0">
+    <title>Payroll</title>
+    <link rel="stylesheet" href="payroll-style.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:ital, wght@0, 100;0, 200; 0,300; 0,400; 0,500; 0,
+    700; 1,300&display=swap"  rel="stylesheet">
+
+</head>
+<body>
+    <div class ="container">
+        <a href="lover.html"></a>
+    <div class="navbar">
+        <img src= "assets/img/Winter (1).png"; class="logo">
+        <nav>
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="">LOOPING</a></li>
+                <li><a href="">INCOME TAX</a></li>
+                <li><a href="">PAYROLL</a></li>
+                </ul>
+        </nav>
+    </div>
+    <body>
+        <h1>Payroll</h1>
+<html>
+<head>
+  <title>Payroll</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <main class="table">
+    <section class="table__header">
+        <h2>Payroll Management</h2>
+    </section>
+    <section class="table__body">
+        <table>
+            <tbody>
+                <tr>
+                    <td colspan="2">
+                        <h3>Payroll List</h3>
+                        <div id="payrollTable"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <form id="deleteForm">
+                            <label for="lineNumber">Enter Line Number to Delete:</label>
+                            <input type="number" id="lineNumber">
+                            <button type="button" id="deleteEmployee">Delete Employee</button>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="employeeName">Employee Name:</label>
+                    </td>
+                    <td>
+                        <input type="text" id="employeeName" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="daysWorked">Days Worked:</label>
+                    </td>
+                    <td>
+                        <input type="number" id="daysWorked" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="dailyRate">Daily Rate:</label>
+                    </td>
+                    <td>
+                        <input type="number" id="dailyRate" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="deductionAmount">Deduction Amount:</label>
+                    </td>
+                    <td>
+                        <input type="number" id="deductionAmount" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button type="button" id="addEmployee">Add Employee</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+
+<script>
+
+
+    let payrollList = [];
+
+  function calculatePay(daysWorked, dailyRate, deductionAmount) {
+    const grossPay = daysWorked * dailyRate;
+    const netPay = grossPay - deductionAmount;
+    return { grossPay, netPay };
+  }
+
+  function displayPayrollTable() {
+    const tableDiv = document.getElementById('payrollTable');
+    tableDiv.innerHTML = "<h3>Payroll List</h3>";
+    const table = document.createElement('table');
+
+    const headerRow = table.insertRow(0);
+    headerRow.innerHTML = "<th>No.</th><th>Daily Rate</th><th>Gross Pay</th><th>Deduction Amount</th><th>Net Pay</th>";
+
+
+
+    payrollList.forEach((employee, index) => {
+      const { daysWorked, dailyRate, deductionAmount } = employee;
+      const { grossPay, netPay } = calculatePay(daysWorked, dailyRate, deductionAmount);
+
+      const row = table.insertRow(index + 1);
+      row.innerHTML = `<td>${index + 1}</td><td>${employee.name}</td>
+      <td>${daysWorked}</td><td>${dailyRate}</td><td>${grossPay}</td>
+      <td>${deductionAmount}</td><td>${netPay}</td>`;
+    });
+
+    tableDiv.appendChild(table);
+  }
+
+  function openModal() {
+    document.getElementById('overlay').style.display = 'block';
+    document.getElementById('confirmationModal').style.display = 'block';
+  }
+
+  function closeModal() {
+    document.getElementById('overlay').style.display = 'none';
+    document.getElementById('confirmationModal').style.display = 'none';
+  }
+
+  document.getElementById("addEmployee").addEventListener("click",
+    function addEmployee() {
+      const name = document.getElementById('employeeName').value;
+      const daysWorked = parseInt(document.getElementById('daysWorked').value);
+      const dailyRate = parseInt(document.getElementById('dailyRate').value);
+      const deductionAmount = parseInt(document.getElementById('deductionAmount').value);
+
+      payrollList.push({ name, daysWorked, dailyRate, deductionAmount });
+      displayPayrollTable();
+    });
+
+    document.getElementById("deleteEmployee").addEventListener("click", function() {
+        const lineNumber = parseInt(document.getElementById('lineNumber').value);
+      
+        if (lineNumber >= 1 && lineNumber <= payrollList.length) {
+          payrollList.splice(lineNumber - 1, 1);
+          displayPayrollTable(); // Update the displayed table after deletion
+        } else {
+          alert("Invalid line number.");
+        }
+      });
+
+  document.getElementById("confirmDelete").addEventListener("click",
+    function () {
+      const lineNumber = parseInt(document.getElementById('lineNumber').value);
+
+      if (lineNumber >= 1 && lineNumber <= payrollList.length) {
+        payrollList.splice(lineNumber - 1, 1);
+        displayPayrollTable();
+        closeModal();
+      } else {
+        alert("Invalid line number.");
+        closeModal();
+      }
+    });
+
+  document.getElementById("cancelDelete").addEventListener("click",
+    function () {
+      closeModal();
+    });
+</script>
+</body>
+</html>

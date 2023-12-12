@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unit Conversion</title>
+</head>
+<body>
+    <main class="table">
+        <section class="table__header">
+            <h2>Unit Converter</h2>
+        </section>
+        <section class="table__body">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <label for="inputC">Celsius:</label>
+                            <input type="number" id="inputC" placeholder="Enter Celsius">
+                            <button type="button" onclick="convert('CtoF')">Convert to Fahrenheit</button><br>
+                            <p id="resultF"></p>
+                        </td>
+                        <td>
+                            <label for="inputF">Fahrenheit:</label>
+                            <input type="number" id="inputF" placeholder="Enter Fahrenheit">
+                            <button type="button" onclick="convert('FtoC')">Convert to Celsius</button><br>
+                            <p id="resultC"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="inputFeet">Feet:</label>
+                            <input type="number" id="inputFeet" placeholder="Enter Feet">
+                            <button type="button" onclick="convert('FtoM')">Convert to Meters</button><br>
+                            <p id="resultM"></p>
+                        </td>
+                        <td>
+                            <label for="inputM">Meters:</label>
+                            <input type="number" id="inputM" placeholder="Enter Meters">
+                            <button type="button" onclick="convert('MtoF')">Convert to Feet</button><br>
+                            <p id="resultFeet"></p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script>
+        function convert(type) {
+            switch (type) {
+                case 'CtoF':
+                    var celsius = parseFloat(document.getElementById("inputC").value);
+                    var fahrenheit = (celsius * 9 / 5) + 32;
+                    document.getElementById("resultF").innerHTML = fahrenheit.toFixed(2) + " °F";
+                    break;
+                case 'FtoC':
+                    var fahrenheitVal = parseFloat(document.getElementById("inputF").value);
+                    var celsiusVal = (fahrenheitVal - 32) * 5 / 9;
+                    document.getElementById("resultC").innerHTML = celsiusVal.toFixed(2) + " °C";
+                    break;
+                case 'FtoM':
+                    var feetVal = parseFloat(document.getElementById("inputFeet").value);
+                    var metersVal = feetVal * 0.3048;
+                    document.getElementById("resultM").innerHTML = metersVal.toFixed(4) + " Meters";
+                    break;
+                case 'MtoF':
+                    var metersValue = parseFloat(document.getElementById("inputM").value);
+                    var feetValue = metersValue * 3.28084;
+                    document.getElementById("resultFeet").innerHTML = feetValue.toFixed(4) + " Feet";
+                    break;
+                default:
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>

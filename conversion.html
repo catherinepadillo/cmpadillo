@@ -1,0 +1,103 @@
+<html>
+<head>
+    <meta name="viewport" content="width"=device-width, initial-scale="1.0">
+    <title>Conversion</title>
+    <link rel="stylesheet" href="conversion-style.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:ital, wght@0, 100;0, 200; 0,300; 0,400; 0,500; 0,
+    700; 1,300&display=swap"  rel="stylesheet">
+
+</head>
+<body>
+    <div class ="container">
+        <a href="lover.html"></a>
+    <div class="navbar">
+        <img src= "assets/bg/summerlogo.png"; class="logo">
+        <nav>
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="">LOOPING</a></li>
+                <li><a href="">INCOME TAX</a></li>
+                <li><a href="">PAYROLL</a></li>
+                </ul>
+        </nav>
+    </div>
+    <body>
+
+    <h1>Unit Conversion</h1>
+
+    <main class="table">
+      <section class="table__header">
+        <h2>Unit Converter</h2>
+      </section>
+      <section class="table__body">
+        <table>
+          <tbody>
+            <tr>
+              <td>
+                <table id="resultTable"></table>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="inputValue">Enter Value:</label>
+                <input type="number" id="inputValue">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <button onclick="convert()">Convert</button>
+                <button onclick="clearForm()">Clear</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <script>
+      function convert() {
+        const inputValue = parseFloat(document.getElementById('inputValue').value);
+      
+        if (!isNaN(inputValue)) {
+          const resultCelsius = (inputValue - 32) * 5 / 9;
+          const resultFahrenheit = (inputValue * 9 / 5) + 32;
+          const resultMeters = inputValue * 3.28084;
+          const resultFeet = inputValue / 3.28084;
+      
+          const tableContent = `
+            <tr>
+              <th>Conversion Type</th>
+              <th>Result</th>
+            </tr>
+            <tr>
+              <td>Fahrenheit to Celsius</td>
+              <td>${inputValue}°F is ${resultCelsius.toFixed(2)}°C</td>
+            </tr>
+            <tr>
+              <td>Celsius to Fahrenheit</td>
+              <td>${inputValue}°C is ${resultFahrenheit.toFixed(2)}°F</td>
+            </tr>
+            <tr>
+              <td>Meters to Feet</td>
+              <td>${inputValue} Meters is ${resultMeters.toFixed(2)} Feet</td>
+            </tr>
+            <tr>
+              <td>Feet to Meters</td>
+              <td>${inputValue} Feet is ${resultFeet.toFixed(2)} Meters</td>
+            </tr>
+          `;
+      
+          document.getElementById('resultTable').innerHTML = tableContent;
+        } else {
+          document.getElementById('resultTable').innerHTML = '<p>Please enter a valid number.</p>';
+        }
+      }
+      
+      function clearForm() {
+        document.getElementById('inputValue').value = '';
+        document.getElementById('resultTable').innerHTML = '';
+      }
+    </script>
+    
+        

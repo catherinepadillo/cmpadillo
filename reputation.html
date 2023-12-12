@@ -1,0 +1,124 @@
+<html>
+<head>
+    <meta name="viewport" content="width"=device-width, initial-scale="1.0">
+    <title>Reputation</title>
+    <link rel="stylesheet" href="reputation-style.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:ital, wght@0, 100;0, 200; 0,300; 0,400; 0,500; 0,
+    700; 1,300&display=swap"  rel="stylesheet">
+</head>
+<body>
+    <div class ="container">
+        <a href="lover.html"></a>
+        <div class="navbar">
+            <img src="assets/Fall updated .png" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="">LOOPING</a></li>
+                    <li><a href="">INCOME TAX</a></li>
+                    <li><a href="">PAYROLL</a></li>
+                    </ul>
+            </nav>
+        </div>
+        <body>
+    
+        <h1>Looping</h1>
+<main class="table">
+    <section class="table__header">
+        <h2>Factorial, Sum, Average of N Natural Numbers</h2>
+    </section>
+    <section class="table__body">
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <label for="factorialInput">Factorial:</label>
+                    </td>
+                    <td>
+                        <input type="number" id="factorialInput" placeholder="Enter a digit">
+                    </td>
+                    <td>
+                        <button type="button" onclick="calculateFactorial()">Calculate Factorial</button>
+                    </td>
+                    <td>
+                        <p id="resultFactorial"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="sumInput">Sum:</label>
+                    </td>
+                    <td>
+                        <input type="number" id="sumInput" placeholder="Enter a digit">
+                    </td>
+                    <td>
+                        <button type="button" onclick="calculateSum()">Calculate Sum</button>
+                    </td>
+                    <td>
+                        <p id="resultSum"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="averageInput">Average:</label>
+                    </td>
+                    <td>
+                        <input type="number" id="averageInput" placeholder="Enter a digit">
+                    </td>
+                    <td>
+                        <button type="button" onclick="calculateAverage()">Calculate Average</button>
+                    </td>
+                    <td>
+                        <p id="resultAverage"></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+
+<script>
+    function calculateFactorial() {
+        var n = parseInt(document.getElementById("factorialInput").value);
+        var total = 1;
+        var i = 1;
+        if (n < 0) {
+            alert("Cannot perform factorial on negative numbers.");
+        } else {
+            while (i <= n) {
+                total = total * i;
+                i++;
+            }
+            document.getElementById("resultFactorial").innerHTML = "Factorial of " + n + " is " + total;
+        }
+    }
+
+    function calculateSum() {
+        var n = parseInt(document.getElementById("sumInput").value);
+        var total = 0;
+        if (n < 0) {
+            alert("Please enter a positive integer");
+        } else {
+            for (var i = 1; i <= n; i++) {
+                total += i;
+            }
+            document.getElementById("resultSum").innerHTML = "The sum is " + total;
+        }
+    }
+
+    function calculateAverage() {
+        var n = parseInt(document.getElementById("averageInput").value);
+        var total = 0;
+        if (n < 0) {
+            alert("Please enter a positive integer");
+        } else {
+            for (var i = 1; i <= n; i++) {
+                total += i;
+            }
+            var average = total / n;
+            document.getElementById("resultAverage").innerHTML = "The average is " + average.toFixed(2);
+        }
+    }
+</script>
+   
