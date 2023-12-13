@@ -1,6 +1,6 @@
 <html>
 <head>
-    <meta name="viewport" content="width"=device-width, initial-scale="1.0">
+    <meta name="viewport" content="width"= device-width, initial-scale="1.0">
     <title>Reputation</title>
     <link rel="stylesheet" href="reputation-style.css">
 
@@ -15,9 +15,9 @@
             <nav>
                 <ul>
                     <li><a href="index.html">HOME</a></li>
-                    <li><a href="">LOOPING</a></li>
-                    <li><a href="">INCOME TAX</a></li>
-                    <li><a href="">PAYROLL</a></li>
+                    <li><a href="conversion.html">UNIT CONVERSION</a></li>
+                    <li><a href="incometax.html">INCOME TAX</a></li>
+                    <li><a href="payroll.html">PAYROLL</a></li>
                     </ul>
             </nav>
         </div>
@@ -28,97 +28,119 @@
     <section class="table__header">
         <h2>Factorial, Sum, Average of N Natural Numbers</h2>
     </section>
-    <section class="table__body">
-        <table>
-            <tbody>
-                <tr>
-                    <td>
-                        <label for="factorialInput">Factorial:</label>
-                    </td>
-                    <td>
-                        <input type="number" id="factorialInput" placeholder="Enter a digit">
-                    </td>
-                    <td>
-                        <button type="button" onclick="calculateFactorial()">Calculate Factorial</button>
-                    </td>
-                    <td>
-                        <p id="resultFactorial"></p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="sumInput">Sum:</label>
-                    </td>
-                    <td>
-                        <input type="number" id="sumInput" placeholder="Enter a digit">
-                    </td>
-                    <td>
-                        <button type="button" onclick="calculateSum()">Calculate Sum</button>
-                    </td>
-                    <td>
-                        <p id="resultSum"></p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="averageInput">Average:</label>
-                    </td>
-                    <td>
-                        <input type="number" id="averageInput" placeholder="Enter a digit">
-                    </td>
-                    <td>
-                        <button type="button" onclick="calculateAverage()">Calculate Average</button>
-                    </td>
-                    <td>
-                        <p id="resultAverage"></p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-</main>
-
+    <div class="single-container">
+        <div class="single-content small-content">
+            <label>Operation Type:</label>
+            <select id="operationType">
+                <option value="factorial">Factorial</option>
+                <option value="sum">Sum</option>
+                <option value="average">Average</option>
+            </select>
+            <br><br>
+            <label>Enter a number: </label>
+            <input type="text" id="number" placeholder="N">
+            <br><br>
+            <label for="result">Result: </label>
+            <input type="text" id="result" readonly>
+            <button id="clear-button" >Clear Values</button>
+            <p class="lighter-color">
+                <br>
+                
+            </p>
+        </div>
+    </div>
+</div>
 <script>
-    function calculateFactorial() {
-        var n = parseInt(document.getElementById("factorialInput").value);
-        var total = 1;
+    document.getElementById('operationType').addEventListener('change', compute);
+    document.getElementById('number').addEventListener('input', compute);
+    document.getElementById('clear-button').addEventListener('click', clearValues);
+
+    function compute() {
+        var number = Number(document.getElementById('number').value);
+        if (isNaN(number)) {
+            document.getElementById('result').value = 'Please enter a valid number.';
+            return;
+        }
+
+        var operationType = document.getElementById('operationType').value;
+        switch (operationType) {
+            case 'factorial':
+                factorial();
+                break;
+            case 'sum':
+                sum();
+                break;
+            case 'average':
+                average();
+                break;
+            default:
+                document.getElementById('result').innerHTML = 'Invalid operation type';
+        }
+    }
+    function factorial() {
+        var number = document.getElementById('number').value * 1;
+        var result = 1;
         var i = 1;
-        if (n < 0) {
-            alert("Cannot perform factorial on negative numbers.");
-        } else {
-            while (i <= n) {
-                total = total * i;
-                i++;
-            }
-            document.getElementById("resultFactorial").innerHTML = "Factorial of " + n + " is " + total;
+
+        if (number < 0) {
+            document.getElementById('result').value = 'ERROR! Please enter a positive number.';
+            return;
         }
+
+        while (i <= number) {
+            result *= i;
+            i++;
+        }
+        document.getElementById('result').value = Number(result).toLocaleString();
     }
 
-    function calculateSum() {
-        var n = parseInt(document.getElementById("sumInput").value);
-        var total = 0;
-        if (n < 0) {
-            alert("Please enter a positive integer");
-        } else {
-            for (var i = 1; i <= n; i++) {
-                total += i;
-            }
-            document.getElementById("resultSum").innerHTML = "The sum is " + total;
+    function sum() {
+        var number = document.getElementById('number').value * 1;
+        var result = 0;
+        var i = 1;
+
+        if (number < 0) {
+            document.getElementById('result').value = 'ERROR! Please enter a positive number.';
+            return;
         }
+
+        if (number == 0) {
+            document.getElementById('result').value = 0;
+            return;
+        }
+
+        do {
+            result += i;
+            i++;
+        } while (i <= number);
+        document.getElementById('result').value = Number(result).toLocaleString();
     }
 
-    function calculateAverage() {
-        var n = parseInt(document.getElementById("averageInput").value);
-        var total = 0;
-        if (n < 0) {
-            alert("Please enter a positive integer");
-        } else {
-            for (var i = 1; i <= n; i++) {
-                total += i;
-            }
-            var average = total / n;
-            document.getElementById("resultAverage").innerHTML = "The average is " + average.toFixed(2);
+    function average() {
+        var number = document.getElementById('number').value * 1;
+        var result = 0;
+
+        if (number < 0) {
+            document.getElementById('result').value = 'ERROR! Please enter a positive number.';
+            return;
         }
+
+        if (number == 0) {
+            document.getElementById('result').value = 0;
+            return;
+        }
+
+        for (var i = 1; i <= number; i++) {
+            result += i;
+        }
+        result /= number;
+        document.getElementById('result').value = Number(result).toLocaleString();
+    }
+
+    function clearValues () {
+        document.getElementById('number').value = '';
+        document.getElementById('result').value = '';
     }
 </script>
-   
+</body>
+</html>

@@ -76,6 +76,8 @@
       padding-bottom: 2.5rem;
     }
 
+   
+
     
     .hero-title .explore button {
       background: rgba( 189, 189, 189, 0.299 );
@@ -142,7 +144,7 @@
     .tourist-list .active{
      margin-top: -5rem;
     }
-    a {
+     a {
       text-decoration: none;
   }
   .logo{

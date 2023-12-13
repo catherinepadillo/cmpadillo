@@ -16,9 +16,9 @@
         <nav>
             <ul>
                 <li><a href="index.html">HOME</a></li>
-                <li><a href="">LOOPING</a></li>
-                <li><a href="">INCOME TAX</a></li>
-                <li><a href="">PAYROLL</a></li>
+                <li><a href="reputation.html">LOOPING</a></li>
+                <li><a href="incometax.html">INCOME TAX</a></li>
+                <li><a href="payroll.html">PAYROLL</a></li>
                 </ul>
         </nav>
     </div>
@@ -26,78 +26,69 @@
 
     <h1>Unit Conversion</h1>
 
-    <main class="table">
-      <section class="table__header">
-        <h2>Unit Converter</h2>
-      </section>
-      <section class="table__body">
-        <table>
-          <tbody>
-            <tr>
-              <td>
-                <table id="resultTable"></table>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label for="inputValue">Enter Value:</label>
-                <input type="number" id="inputValue">
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <button onclick="convert()">Convert</button>
-                <button onclick="clearForm()">Clear</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-    </main>
+    <div class="single-container">
+      <div class="single-content small-content">
+          <label for="conversion">Select conversion: </label>
+          <select id="conversion" onchange="clearResult()">
+              <option value="celsiusToFahrenheit">Celsius to Fahrenheit</option>
+              <option value="fahrenheitToCelsius">Fahrenheit to Celsius</option>
+              <option value="metersToFeet">Meters to Feet</option>
+              <option value="feetToMeters">Feet to Meters</option>
+          </select>
+          <br>
+          <label>Enter a number: </label>
+          <input type="text" id="number" placeholder="0">
+          <br>
+          <label for="result">Result: </label>
+          <input type="text" id="result" readonly>
+          <button id="clear-button" >Clear Values</button>
+      </div>
+  </div>
+</div>
 
-    <script>
-      function convert() {
-        const inputValue = parseFloat(document.getElementById('inputValue').value);
-      
-        if (!isNaN(inputValue)) {
-          const resultCelsius = (inputValue - 32) * 5 / 9;
-          const resultFahrenheit = (inputValue * 9 / 5) + 32;
-          const resultMeters = inputValue * 3.28084;
-          const resultFeet = inputValue / 3.28084;
-      
-          const tableContent = `
-            <tr>
-              <th>Conversion Type</th>
-              <th>Result</th>
-            </tr>
-            <tr>
-              <td>Fahrenheit to Celsius</td>
-              <td>${inputValue}°F is ${resultCelsius.toFixed(2)}°C</td>
-            </tr>
-            <tr>
-              <td>Celsius to Fahrenheit</td>
-              <td>${inputValue}°C is ${resultFahrenheit.toFixed(2)}°F</td>
-            </tr>
-            <tr>
-              <td>Meters to Feet</td>
-              <td>${inputValue} Meters is ${resultMeters.toFixed(2)} Feet</td>
-            </tr>
-            <tr>
-              <td>Feet to Meters</td>
-              <td>${inputValue} Feet is ${resultFeet.toFixed(2)} Meters</td>
-            </tr>
-          `;
-      
-          document.getElementById('resultTable').innerHTML = tableContent;
-        } else {
-          document.getElementById('resultTable').innerHTML = '<p>Please enter a valid number.</p>';
-        }
+<script>
+  document.getElementById('conversion').addEventListener('change', convert);
+  document.getElementById('number').addEventListener('input', convert);
+  document.getElementById('clear-button').addEventListener('click', clearValues);
+
+  function convert() {
+      var conversionType = document.getElementById('conversion').value;
+      var number = Number(document.getElementById('number').value);
+      var result = 0;
+      var message;
+
+      switch (conversionType) {
+          case 'celsiusToFahrenheit':
+              result = (number * (9/5)) + 32;
+              message =  " °F";
+              break;
+          case 'fahrenheitToCelsius':
+              result = (number - 32) * (5/9);
+              message =  " °C";
+              break;
+          case 'metersToFeet':
+              result = number * 3.28084;
+              message =  " ft";
+              break;
+          case 'feetToMeters':
+              result = number / 3.28084;
+              message =  " m";
+              break;
+          default:
+              result = 0;
       }
-      
-      function clearForm() {
-        document.getElementById('inputValue').value = '';
-        document.getElementById('resultTable').innerHTML = '';
+
+      if (isNaN(number)) {
+          document.getElementById('result').value = 'Please enter a valid number.';
+          return;
       }
-    </script>
-    
-        
+
+      document.getElementById('result').value = Number(result).toLocaleString('en-US', {maximumFractionDigits: 2 }) + message;
+  }
+
+  function clearValues () {
+document.getElementById('number').value = '';
+      document.getElementById('result').value = '';
+}
+</script>
+</body>
